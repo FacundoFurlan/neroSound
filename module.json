@@ -1,0 +1,21 @@
+{
+  "id": "neroSound",
+  "title": "neroSound",
+  "description": "Un soundboard básico para reproducir sonidos personalizados en Foundry VTT.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Nero"
+    }
+  ],
+  "esmodules": ["scripts/soundboard.js"],
+  "styles": ["styles/soundboard.css"],
+  "templates": ["templates"],
+  "templatePaths": [
+    "modules/neroSound/templates"
+  ]
+}

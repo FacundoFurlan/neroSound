@@ -1,0 +1,78 @@
+<div class="nero-soundboard-container" style="display:flex; height:100%;">
+  <!-- Panel izquierdo -->
+  <div class="sidebar" style="width:150px; border-right:1px solid #444; padding:10px;">
+      {{#if moods.length}}
+          <ul class="mood-list">
+              {{#each moods}}
+                  <li class="mood-item {{#if (eq ../selectedMood.name this.name)}}selected{{/if}}" data-name="{{this.name}}" style="color: {{this.color}}">
+                      <p>{{this.name}}</p>
+                      <div style="display: flex; flex-direction: row;">
+                          <button class="add-audio-btn" data-name="{{this.name}}">+</button>
+                          <button class="delete-mood-btn" style="text-decoration: none;" data-name="{{this.name}}">×</button>
+                      </div>
+                  </li>
+              {{/each}}
+          </ul>
+      {{/if}}
+      <button class="new-mood-btn" style="background:none; outline: none; border:none; color:rgba(197, 136, 255, 0.6); cursor:pointer; padding:0; font-size:1em;">+ New Mood</button>
+  </div>
+
+  <!-- Panel derecho -->
+  <div class="content" style="flex:1; padding:10px;">
+      {{#if selectedMood}}
+            <h3>
+                {{selectedMood.name}}
+                <button class="add-block-btn" style="background:none; border:none; color:#88c; cursor:pointer;">+ Block</button>
+            </h3>
+
+            {{#if selectedMood.blocks}}
+                {{#each selectedMood.blocks}}
+                    <div class="audio-block" data-block-name="{{this.name}}" style="border:1px solid {{this.color}}; border-radius:6px; margin-bottom:10px;">
+                        <div class="block-header" style="background:{{this.color}}; padding:4px; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                            <span class="block-title" style="font-weight:bold; color:{{#if this.darkFont}}#000{{else}}#fff{{/if}};">
+                                {{this.name}}
+                            </span>
+                            <div class="block-actions" style="float:right; display:flex; gap:6px;">
+                                <a class="block-config-btn" title="Configurar" style="color:{{#if this.darkFont}}#000{{else}}#fff{{/if}};"><i class="fas fa-cog"></i></a>
+                                <a class="block-delete-btn" title="Eliminar" style="color:{{#if this.darkFont}}#000{{else}}#fff{{/if}};"><i class="fas fa-trash"></i></a>
+                                <span class="block-toggle" style="color:{{#if this.darkFont}}#000{{else}}#fff{{/if}};">►</span>
+                            </div>
+                        </div>
+                        <div class="block-contents" style="padding:4px; display:none;">
+                            {{#if this.audios.length}}
+                                {{#each this.audios}}
+                                    {{> audio-card 
+                                        name=this.name 
+                                        image=this.image 
+                                        color=this.color 
+                                        volume=this.volume 
+                                        loop=this.loop 
+                                        playing=this.playing
+                                    }}
+                                {{/each}}
+                            {{else}}
+                                <p style="font-size:0.8em; color:#999;">(Vacío)</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            {{/if}}
+
+
+            <div class="audio-grid">
+                {{#each selectedMood.audios}}
+                    {{> audio-card 
+                        name=this.name 
+                        image=this.image 
+                        color=this.color 
+                        volume=this.volume 
+                        loop=this.loop 
+                        playing=this.playing
+                    }}
+                {{/each}}
+            </div>
+      {{else}}
+          <p>{{messageEmpty}}</p>
+      {{/if}}
+  </div>
+</div>

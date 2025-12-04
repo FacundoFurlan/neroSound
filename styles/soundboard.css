@@ -1,0 +1,312 @@
+.neroSoundApp .window-content {
+  padding: 0 !important;
+  background-color: rgba(0, 0, 0, 0.4); /* leve transparencia */
+  color: #ddd;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.mood-ul {
+    padding: 0;
+    margin: 0;
+}
+
+/* Panel lateral de moods */
+.neroSoundApp .mood-list {
+    margin: 0;
+    padding: 0;
+}
+
+/* Botón de nuevo mood */
+.neroSoundApp .new-mood-btn {
+  background: none;
+  border: none;
+  color: #88c;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1em;
+}
+
+.neroSoundApp .new-mood-btn:hover {
+  text-decoration: underline;
+}
+
+.neroSoundApp .mood-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.neroSoundApp .mood-item button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 0.9em;
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.neroSoundApp .mood-item button:hover {
+  color: #fff;
+}
+
+.neroSoundApp .mood-item.selected p {
+  font-weight: bold;
+  text-decoration: underline
+}
+
+/* ================================
+   Estilo del diálogo del soundboard
+   ================================ */
+
+.neroSoundApp,
+.neroSoundApp .window-app,
+.neroSoundApp .window-content,
+.neroSoundApp .window-inner,
+.neroSoundDialog,
+.neroSoundDialog .window-app,
+.neroSoundDialog .window-content,
+.neroSoundDialog .window-header,
+.neroSoundDialog .window-inner{
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.neroSoundDialog .window-content {
+  background: rgba(0, 0, 0, 0.4) !important;
+  color: #ddd;
+  border: none;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.neroSoundDialog .window-header {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+}
+
+.neroSoundDialog .dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.neroSoundDialog .dialog-buttons button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #eee;
+  border-radius: 6px;
+  padding: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.neroSoundDialog .dialog-buttons button:hover,
+.neroSoundDialog .dialog-buttons button:active,
+.neroSoundDialog .dialog-buttons button:focus {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  box-shadow: 0 0 6px 2px rgba(197, 136, 255, 0.6); /* halo azul suave */
+}
+
+.audio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.audio-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 6px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.audio-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+}
+
+.audio-name {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.9em;
+    color: #ddd;
+}
+
+.audio-volume {
+    width: 100%;
+}
+
+.audio-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+/* Volumen y botones alineados */
+.audio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.audio-loop-btn,
+.audio-pause-btn,
+.audio-restart-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: rgba(220, 184, 255, 0.85);
+  transition: transform 0.15s ease, color 0.15s ease, background 0.2s;
+  border-radius: 4px;
+  padding: 2px 4px;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.audio-loop-btn:focus,
+.audio-pause-btn:focus,
+.audio-restart-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.audio-loop-btn:hover,
+.audio-pause-btn:hover,
+.audio-restart-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.15);
+  color: #fff;
+}
+
+/* /------------------- */
+/* Contenedor de la imagen para overlay de botones e indicador */
+.audio-img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+/* Botón de eliminar sobre la esquina superior derecha */
+.audio-delete-btn,
+.audio-config-btn {
+    position: absolute;
+    top: 4px;
+    background: rgba(0,0,0,0.4);
+    border: none;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    z-index: 10;
+    color: #fff;
+}
+
+/* Ajustar posiciones específicas */
+.audio-delete-btn { right: 4px; }
+.audio-config-btn { right: 30px; }
+
+/* Indicador de reproducción */
+.audio-playing-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.4rem;
+    color: lime;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Imagen clickable sigue ocupando todo el contenedor */
+.audio-img.audio-clickable {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+/* Ajustes para que los controles no choquen con la imagen */
+.audio-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    margin-top: 4px;
+}
+
+/* Controles de loop/pause/restart alineados abajo */
+.audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+/* Opcional: cursor pointer solo para imagen y botones */
+.audio-img.audio-clickable,
+.audio-delete-btn,
+.audio-config-btn {
+    cursor: pointer;
+}
+
+.audio-block {
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  flex-direction: row;
+}
+
+.block-header {
+  font-weight: bold;
+  text-align: center;
+  color: #222;
+  user-select: none;
+}
+
+.block-header:hover {
+  filter: brightness(1.1);
+}
+
+.block-contents {
+    background: rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.block-toggle {
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.block-contents .audio-card {
+  width: auto;        /* que tome solo lo que necesita */
+  max-width: 120px;   /* o lo que uses en tu grid principal */
+  display: inline-block; /* para que no se estire al 100% */
+  margin: 2px;        /* un poco de espacio entre audios */
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;   /* scroll vertical */
+  max-height: 100%;   /* para no exceder la ventana */
+}

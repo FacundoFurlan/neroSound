@@ -1,0 +1,28 @@
+<div class="audio-card" data-name="{{name}}">
+    <!-- Contenedor de imagen/fondo -->
+    <div class="audio-img-container" style="position: relative;">
+        <!-- Botones sobre la imagen -->
+        <button class="audio-delete-btn" style="position:absolute; top:2px; right:2px; background:none; border:none; color:red; z-index:5;">X</button>
+        <button class="audio-config-btn" style="position:absolute; top:2px; right:25px; background:none; border:none; z-index:5;">⚙️</button>
+
+        <!-- Indicador de reproducción -->
+        {{#if playing}}
+            <div class="audio-playing-indicator" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:5em; color:lime;">🔊</div>
+        {{/if}}
+
+        <div class="audio-img audio-clickable" style="background-image: url('{{image}}'); background-color: {{color}}"></div>
+    </div>
+
+    <div class="audio-info">
+        <span class="audio-name">{{name}}</span>
+        <input type="range" class="audio-volume" min="0" max="1" step="0.01" value="{{volume}}" />
+
+        <div class="audio-controls" style="display:flex; gap:5px; margin-top:4px;">
+            <button class="audio-loop-btn" style="background:none; outline:none; border:none;">
+                {{#if loop}}🔁{{else}}➡️{{/if}}
+            </button>
+            <button class="audio-pause-btn" style="background:none; outline:none; border:none;">⏯️</button>
+            <button class="audio-restart-btn" style="background:none; outline:none; border:none;">🔄</button>
+        </div>
+    </div>
+</div>
