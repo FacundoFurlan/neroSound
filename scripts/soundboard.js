@@ -413,14 +413,20 @@ class NeroSoundboardApp extends BaseApp {
                         delete audio._monitor;
                     }
                 } else {
-                    await playlist.playSound(sound);
                     audio.playing = true;
+                    await this.renderPreserveScroll();
+                    await playlist.playSound(sound);
 
                     // Monitor que revisa si el sonido dejó de estar en game.audio.playing
+                    let startedPlaying = false;
                     if (audio._monitor) clearInterval(audio._monitor);
                     audio._monitor = setInterval(async () => {
                         const stillPlaying = Array.from(game.audio.playing.values()).some(s => s.src === sound.path && s.playing);
-                        if (!stillPlaying) {
+                        if (stillPlaying) {
+                            startedPlaying = true;
+                            return;
+                        }
+                        if (startedPlaying && !stillPlaying) {
                             clearInterval(audio._monitor);
                             delete audio._monitor;
                             audio.playing = false;
