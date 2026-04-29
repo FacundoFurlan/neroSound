@@ -575,6 +575,10 @@ class NeroSoundboardApp extends BaseApp {
                         <label>Imagen:</label>
                         <input type="file" name="audioImage" accept="image/*" />
                         </div>
+                        <div class="form-group">
+                        <label>Color de fondo:</label>
+                        <input type="color" name="audioColor" value="${audio.color || '#DCB8FF'}" />
+                        </div>
                     </form>
                     `,
                     buttons: {
@@ -591,7 +595,8 @@ class NeroSoundboardApp extends BaseApp {
                                 const oldName = audio.name;
                                 audio.name = newName;
 
-
+                                const audioColor = html.find('input[name="audioColor"]').val();
+                                audio.color = audioColor;
 
                                 const FP = foundry.applications.apps.FilePicker.implementation;
 
@@ -991,6 +996,40 @@ class NeroSoundboardApp extends BaseApp {
             });
         });
 
+        // ===== Mover bloques arriba/abajo =====
+        html.querySelectorAll(".block-up-btn").forEach(btn => {
+            btn.addEventListener("click", async (ev) => {
+                ev.stopPropagation();
+                const blockEl = btn.closest(".audio-block");
+                const blockName = blockEl.dataset.blockName;
+                const mood = getMood();
+                const blockIndex = mood.blocks.findIndex(b => b.name === blockName);
+                if (blockIndex <= 0) return; // Ya está primero, no hacer nada
+
+                // Intercambiar con el bloque anterior
+                [mood.blocks[blockIndex], mood.blocks[blockIndex - 1]] = [mood.blocks[blockIndex - 1], mood.blocks[blockIndex]];
+
+                await game.settings.set("neroSound", "moods", this.moods);
+                await this.renderPreserveScroll();
+            });
+        });
+
+        html.querySelectorAll(".block-down-btn").forEach(btn => {
+            btn.addEventListener("click", async (ev) => {
+                ev.stopPropagation();
+                const blockEl = btn.closest(".audio-block");
+                const blockName = blockEl.dataset.blockName;
+                const mood = getMood();
+                const blockIndex = mood.blocks.findIndex(b => b.name === blockName);
+                if (blockIndex >= mood.blocks.length - 1) return; // Ya está último, no hacer nada
+
+                // Intercambiar con el bloque siguiente
+                [mood.blocks[blockIndex], mood.blocks[blockIndex + 1]] = [mood.blocks[blockIndex + 1], mood.blocks[blockIndex]];
+
+                await game.settings.set("neroSound", "moods", this.moods);
+                await this.renderPreserveScroll();
+            });
+        });
     }
 
 }
