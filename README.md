@@ -21,11 +21,12 @@ Foundry VTT supports audio playback, but handling dozens or hundreds of files be
 
 **Nero Sound** provides a structured SoundBoard environment where you can:
 
+- Provide a graphic and visual organizational experience
 - Separate audio into multiple Boards
 - Organize with sections and subfolders
 - Assign images and colors to sounds
-- Play multiple sounds at once
-- Instantly see what is currently playing
+- Play multiple sounds at once as a loop ambience or a soundfx
+- Instantly see what is currently playing and what is not
 
 ---
 
@@ -54,7 +55,7 @@ Create a Board, load your sounds, and play them. You can configure each sound’
 ## Quick Usage
 
 1. Install and enable the **Nero Sound** module in Foundry.
-2. Open the Nero Sound interface from the sidebar.
+2. Open the Nero Sound interface from the left sidebar.
 3. Create a new Board and give it a name.
 4. Load your audio files into the Board.
 5. Optionally create sections to organize sounds.
